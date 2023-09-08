@@ -21,15 +21,15 @@ public class SecurityConfiguration {
         http
                 .authorizeHttpRequests((authorize) -> authorize
                         //control access privileges
-                        .requestMatchers("/camas").permitAll()
+                        .requestMatchers("/camas").authenticated()
                         .requestMatchers( "/administrador").authenticated()
-                        .requestMatchers("/comida").permitAll()
-                        .requestMatchers("/juguetes").permitAll()
-                        .requestMatchers("/ropa").permitAll()
-                        .requestMatchers("/aseo").permitAll()
-                        .requestMatchers("/servicios").permitAll()
-                        .requestMatchers("/index").permitAll()    
-                        .anyRequest().permitAll()
+                        .requestMatchers("/comida").authenticated()
+                        .requestMatchers("/juguetes").authenticated()
+                        .requestMatchers("/ropa").authenticated()
+                        .requestMatchers("/aseo").authenticated()
+                        .requestMatchers("/servicios").authenticated()
+                        .requestMatchers("/index").authenticated()    
+                        .anyRequest().authenticated()
                 )
                 .httpBasic(withDefaults())
                 .formLogin(withDefaults());
