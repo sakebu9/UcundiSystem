@@ -1,4 +1,5 @@
-    package com.proyecto.demo;
+package com.proyecto.demo;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,19 +30,21 @@ public class SecurityConfiguration {
                         .requestMatchers("/aseo").authenticated()
                         .requestMatchers("/servicios").authenticated()
                         .requestMatchers("/index").authenticated()    
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .httpBasic(withDefaults())
                 .formLogin(withDefaults());
         // @formatter:on
         return http.build();
     }
+
     @Bean
 
     // deepcode ignore HardcodedPassword: <please specify a reason of ignoring this>
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
 
     public InMemoryUserDetailsManager userDetailsService() {
@@ -53,5 +56,5 @@ public class SecurityConfiguration {
                 .build();
         return new InMemoryUserDetailsManager(user);
 
-      }
+    }
 }

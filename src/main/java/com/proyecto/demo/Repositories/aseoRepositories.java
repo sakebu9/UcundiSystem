@@ -1,0 +1,9 @@
+package com.proyecto.demo.Repositories;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.proyecto.demo.dominian.aseoEntity;
+
+public interface aseoRepositories extends CrudRepository<aseoEntity ,Long>{
+    
+}
