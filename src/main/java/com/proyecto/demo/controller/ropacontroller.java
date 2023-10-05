@@ -1,29 +1,77 @@
 package com.proyecto.demo.controller;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.proyecto.demo.dominian.ropaEntity;
+import com.proyecto.demo.Repositories.ropaRepositories;
 
 @RestController
 @RequestMapping("/api")
 public class ropacontroller {
-    @GetMapping("/createropa")
-    public String createRopa() {
-        return "Ropa añadida";
+
+    private final ropaRepositories ropaRepo;
+
+    @Autowired
+    public ropacontroller(ropaRepositories ropaRepo) {
+        this.ropaRepo = ropaRepo;
     }
 
-    @GetMapping("/readropa")
-    public String readRopa() {
-        return "Ropa consultada";
+    @GetMapping("/createRopa/{id}")
+        public String createRopa(@PathVariable("id") String id){
+        String regexforID = "[A-Z 0-9 a-z]{0,15}";
+            if (id == null || !id.matches(regexforID))
+            throw new IllegalArgumentException();
+         return "Ropa creada satisfactoriamente "+id;
+        }
+
+    @GetMapping("/createRopa")
+    public String createRopa (){
+        return "Ropa creada satisfactoriamente";
     }
 
-    @GetMapping("/updateropa")
-    public String updateRopa() {
-        return "Ropa actualizada";
+    @GetMapping("/readRopa/{id}")
+        public Optional<ropaEntity> readRopa(@PathVariable("id") String id){
+        String regexforID = "[A-Z 0-9 a-z]{0,15}";
+            if (id == null || !id.matches(regexforID))
+            throw new IllegalArgumentException();
+         return ropaRepo.findById(Long.valueOf(id));
+        }
+
+    @GetMapping("/readRopa")
+    public String readRopa(){
+        return "Ropa encontrada satisfactoriamente";
     }
 
-    @GetMapping("/deleteropa")
-    public String deleteRopa() {
-        return "Ropa eliminada";
+    @GetMapping("/updateRopa/{id}")
+        public String updateRopa(@PathVariable("id") String id){
+        String regexforID = "[A-Z 0-9 a-z]{0,15}";
+            if (id == null || !id.matches(regexforID))
+            throw new IllegalArgumentException();
+         return "Ropa actualizada satisfactoriamente "+id;
+        }
+
+        @GetMapping("/updateRopa")
+    public String updateRopa (){
+        return "Ropa actualizada satisfactoriamente";
     }
+
+    @GetMapping("/deleteRopa/{id}")
+        public String deleteRopa(@PathVariable("id") String id){
+        String regexforID = "[A-Z 0-9 a-z]{0,15}";
+            if (id == null || !id.matches(regexforID))
+            throw new IllegalArgumentException();
+         return "Ropa elimanada satisfactoriamente "+id;
+        }
+
+    @GetMapping("/deleteRopa")
+    public String deleteRopa(){
+        return "Ropa eliminada satisfactoriamente";
+    }
+
 }

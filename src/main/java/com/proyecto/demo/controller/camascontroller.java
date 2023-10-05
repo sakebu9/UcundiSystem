@@ -1,62 +1,77 @@
 package com.proyecto.demo.controller;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proyecto.demo.dominian.camasEntity;
+import com.proyecto.demo.Repositories.camasRepositories;
+
 @RestController
 @RequestMapping("/api")
 public class camascontroller {
+
+    private final camasRepositories camasRepo;
+    
+    @Autowired
+    public camascontroller(camasRepositories camasRepo) {
+        this.camasRepo = camasRepo;
+    }
+
     @GetMapping("/createCamas/{id}")
-    public String addCamas(@PathVariable("id") String id) {
-        String regexforID = "[1-9 a-z]{1,9}";
-        if (id == null || !id.matches(regexforID))
+        public String createCamas(@PathVariable("id") String id){
+        String regexforID = "[A-Z 0-9 a-z]{0,15}";
+            if (id == null || !id.matches(regexforID))
             throw new IllegalArgumentException();
-        return "Cama adicionada satisfactoriamente " + id;
+         return "Cama creada satisfactoriamente "+id;
+        }
+
+    @GetMapping("/createCamas")
+    public String createCamas (){
+        return "Cama creada satisfactoriamente";
     }
 
-    @GetMapping("/createcamas")
-    public String createCamas() {
-        return "Cama añadida";
-    }
-
-    @GetMapping("/readcamas/{id}")
-    public String readCamas(@PathVariable("id") String id) {
-        String regexforID = "[1-9 a-z]{1,9}";
-        if (id == null || !id.matches(regexforID))
+    @GetMapping("/readCamas/{id}")
+        public Optional<camasEntity> readCamas(@PathVariable("id") String id){
+        String regexforID = "[A-Z 0-9 a-z]{0,15}";
+            if (id == null || !id.matches(regexforID))
             throw new IllegalArgumentException();
-        return "Cama consultada" + id;
+         return camasRepo.findById(Long.valueOf(id));
     }
 
-    @GetMapping("/readcamas/")
-    public String readCamas() {
-        return "Cama consultada";
+    @GetMapping("/readCamas")
+    public String readCamas(){
+        return "Cama encontrada satisfactoriamente";
     }
 
-    @GetMapping("/updatecamas")
-    public String updateCamas(@PathVariable("id") String id) {
-        String regexforID = "[1-9 a-z]{1,9}";
-        if (id == null || !id.matches(regexforID))
+    @GetMapping("/updateCamas/{id}")
+        public String updateCamas(@PathVariable("id") String id){
+        String regexforID = "[A-Z 0-9 a-z]{0,15}";
+            if (id == null || !id.matches(regexforID))
             throw new IllegalArgumentException();
-        return "Cama actualizada" + id;
+         return "Cama actualizada satisfactoriamente "+id;
+    }
+        
+        @GetMapping("/updateCamas")
+    public String updateCamas (){
+        return "Cama actualizada satisfactoriamente";
     }
 
-    @GetMapping("/updatecamas")
-    public String updateCamas() {
-        return "Cama actualizada";
-    }
-
-    @GetMapping("/deletecamas")
-    public String deleteCamas(@PathVariable("id") String id) {
-        String regexforID = "[1-9 a-z]{1,9}";
-        if (id == null || !id.matches(regexforID))
+    @GetMapping("/deleteCamas/{id}")
+        public String deleteCamas(@PathVariable("id") String id){
+        String regexforID = "[A-Z 0-9 a-z]{0,15}";
+            if (id == null || !id.matches(regexforID))
             throw new IllegalArgumentException();
-        return "Cama eliminada" + id;
+         return "Cama eliminada satisfactoriamente "+id;
     }
 
-    @GetMapping("/deletecamas")
-    public String deleteCamas() {
-        return "Cama eliminada";
+    @GetMapping("/deleteCamas")
+    public String deleteCamas(){
+        return "Cama eliminada satisfactoriamente";
     }
+
 }
