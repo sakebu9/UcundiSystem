@@ -1,0 +1,35 @@
+package com.proyecto.demo.dominian;
+import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.NamedQuery;
+
+@NamedQuery(name = "userEntity.findByEmail",query="select us from userEntity where u.email=:email")
+@Entity
+@Data
+@DynamicInsert
+@DynamicUpdate
+@Table(name="users")
+public class userEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "nombre")
+    private String name;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "status")
+    private String status;
+
+    @Column(name = "role")
+    private String role;
+}
+
+
