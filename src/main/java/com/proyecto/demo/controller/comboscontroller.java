@@ -14,7 +14,7 @@ import com.proyecto.demo.Repositories.combosRepositories;
 @RestController
 @RequestMapping("/api")
 public class comboscontroller {
-      private final combosRepositories comboRepo;
+    private final combosRepositories comboRepo;
 
    @Autowired
     public comboscontroller(combosRepositories comboRepo) {
