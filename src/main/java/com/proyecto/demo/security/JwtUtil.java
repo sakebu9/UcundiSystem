@@ -2,7 +2,6 @@ package com.proyecto.demo.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -12,7 +11,7 @@ import java.util.function.Function;
 
 public class JwtUtil {
 
-    private String SECRET_KEY = "0y3_m1_p3rr0"; // Cambia esto a una clave segura en un entorno de producción
+    private String SECRET_KEY = "{Ñ_scrum_1093$}"; // Cambia esto a una clave segura en un entorno de producción
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
