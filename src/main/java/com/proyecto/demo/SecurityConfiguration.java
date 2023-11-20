@@ -55,7 +55,7 @@ public class SecurityConfiguration {
         PasswordEncoder passwordEncoder = passwordEncoder();
         UserDetails user = User.builder()
                 .username("administrador")
-                .password(passwordEncoder.encode("lamascotadeldueño"))
+                .password(passwordEncoder.encode("DWk-1073@_klp"))
                 .roles("USER")
                 .build();
         return new InMemoryUserDetailsManager(user);
