@@ -50,7 +50,7 @@ public class SecurityConfiguration {
 
     @Bean
 
-    private InMemoryUserDetailsManager userDetailsService() {
+    public InMemoryUserDetailsManager userDetailsService() {
         PasswordEncoder passwordEncoder = passwordEncoder();
         UserDetails user = User.builder()
                 .username("administrador")
